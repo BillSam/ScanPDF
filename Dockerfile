@@ -7,8 +7,7 @@ RUN sed -i 's/^Foreground .*$/Foreground true/g' /etc/clamav/clamd.conf && \
     sed -i 's/^Foreground .*$/Foreground true/g' /etc/clamav/freshclam.conf
 
 # this is to bootstrap the virus definitions, as trying to start clamd without
-# any just causes the process to die, upon the container starting it updates
-# these immediately again
+# any just causes the process to die, upon the container starting it updates these immediately again
 RUN freshclam
 
 RUN mkdir /run/clamav && chown clamav:clamav /run/clamav
