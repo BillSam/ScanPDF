@@ -18,7 +18,7 @@ public class FileScanController {
     private FileScanService fileScanService;
 
     @PostMapping("/upload")
-    public ResponseDto<List<FileScanResponseDto>> uploadFiles(@RequestParam("file")MultipartFile file){
+    public ResponseDto<List<FileScanResponseDto>> uploadFiles(@RequestParam("file") MultipartFile file){
         return new ResponseDto<List<FileScanResponseDto>>(fileScanService.scanFiles(new MultipartFile[]{file}));
     }
 }
