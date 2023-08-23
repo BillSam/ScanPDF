@@ -37,7 +37,7 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # Needed to get PR information, if any
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-        run: mvn -B verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar -Dsonar.inclusions=src/main/resources/application.properties -Dsonar.projectKey=BillSam_ScanPDF -Dsonar.organization=scan-pdf
+        run: mvn -B verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar -Dsonar.inclusions=src/main/**/*.java,src/main/**/*.properties -Dsonar.projectKey=BillSam_ScanPDF -Dsonar.organization=scan-pdf
 
       - name: Check Quality Gate
         env:
