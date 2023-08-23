@@ -1,7 +1,5 @@
 package com.example.scanpdf.dto;
 
-import org.springframework.web.bind.annotation.PostMapping;
-
 import java.util.Map;
 
 
