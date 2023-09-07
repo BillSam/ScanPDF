@@ -41,6 +41,19 @@ jobs:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
         run: mvn -B verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar -Dsonar.projectKey=BillSam_ScanPDF -Dsonar.organization=scan-pdf
 
+      - name: OWASP Dependency-Check
+        run: mvn org.owasp:dependency-check-maven:check
+
+      - name: Check for Critical Vulnerabilities
+        run: |
+          # Check if the Dependency-Check HTML report contains the text "Critical" (modify as needed)
+          if grep -q "Critical" target/dependency-check-report.html; then
+            echo "Critical vulnerability found. Failing the workflow."
+            exit 1
+          else
+            echo "No critical vulnerabilities found."
+          fi
+
       - name: Save OWASP Dependency-Check Report
         uses: actions/upload-artifact@v2
         with:
