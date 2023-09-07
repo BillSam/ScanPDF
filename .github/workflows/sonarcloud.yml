@@ -37,9 +37,15 @@ jobs:
 
       - name: Build and analyze
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # Needed to get PR information, if any
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
         run: mvn -B verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar -Dsonar.projectKey=BillSam_ScanPDF -Dsonar.organization=scan-pdf
+
+      - name: Save OWASP Dependency-Check Report
+        uses: actions/upload-artifact@v2
+        with:
+          name: dependency-check-report
+          path: target/dependency-check-report.html  # Update the path to the actual report file
 
       - name: Check Quality Gate
         env:
@@ -52,8 +58,3 @@ jobs:
           else
             echo "Quality gate passed"
           fi
-
-      # Add OWASP Dependency-Check step here
-      - name: OWASP Dependency-Check
-        run: mvn org.owasp:dependency-check-maven:check
-
