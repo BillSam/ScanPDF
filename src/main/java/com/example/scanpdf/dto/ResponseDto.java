@@ -2,7 +2,7 @@ package com.example.scanpdf.dto;
 
 import java.util.Map;
 
-
+import com.example.scanpdf.exceptions.ClamAVSizeLimitException;
 public class ResponseDto<T> {
     private T data;
 
