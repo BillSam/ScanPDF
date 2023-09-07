@@ -1,4 +1,5 @@
 name: SonarCloud
+
 on:
   push:
     branches:
@@ -8,6 +9,7 @@ jobs:
   build:
     name: Build and analyze
     runs-on: ubuntu-latest
+
     steps:
       - uses: actions/checkout@v2
         with:
@@ -50,3 +52,8 @@ jobs:
           else
             echo "Quality gate passed"
           fi
+
+      # Add OWASP Dependency-Check step here
+      - name: OWASP Dependency-Check
+        run: mvn org.owasp:dependency-check-maven:check
+
