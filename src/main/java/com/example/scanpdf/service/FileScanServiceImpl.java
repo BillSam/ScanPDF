@@ -46,6 +46,7 @@ public class FileScanServiceImpl implements FileScanService {
             fileScanResponseDto.setSize(multipartFile.getSize());
             fileScanResponseDto.setScanTimeInMilliSec(System.currentTimeMillis() - startTime);
             return fileScanResponseDto;
+            
         }).collect(Collectors.toList());
     }
 }
